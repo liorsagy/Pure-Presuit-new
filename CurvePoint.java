@@ -10,9 +10,8 @@ public class CurvePoint {
     public double followDistance;
     public double pointLenght;
 
-    public CurvePoint( double x, double  y, double moveSpeed, double turnSpeed,
+    public CurvePoint( double y, double  x, double moveSpeed, double turnSpeed,
                        double followDistance){
-
         this.x = x;
         this.y = y;
         this.moveSpeed = moveSpeed;

@@ -11,8 +11,8 @@ import static treamcode.MathFunction.*;
 import static RobotUtilities.MovementVars.*;
 
 public class RobotMovement {
-        //hi
-    public static void followCurve(ArrayList<CurvePoint> allPoints, double followAngle){
+
+    public static void followCurve(ArrayList<CurvePoint> allPoints, double preferdAngel){
         for (int i =0; i < allPoints.size() - 1; i++){
             ComputerDebugging.sendLine(new FloatPoint(allPoints.get(i).x,allPoints.get(i).y), new FloatPoint(allPoints.get(i + 1).x,allPoints.get(i + 1).y));
         }
@@ -20,7 +20,7 @@ public class RobotMovement {
 
         ComputerDebugging.sendKeyPoint(new FloatPoint(followMe.x, followMe.y));
 
-        goToPosition(followMe.x,followMe.y,followMe.moveSpeed, followAngle,followMe.turnSpeed);
+        goToPosition(followMe.x,followMe.y,followMe.moveSpeed, preferdAngel,followMe.turnSpeed);
     }
 
     public static CurvePoint getFollowPointPath(ArrayList< CurvePoint> pathPoints, Point robotlocation){
@@ -32,9 +32,9 @@ public class RobotMovement {
             CurvePoint startLine = pathPoints.get(i);
             CurvePoint endLine = pathPoints.get( i +1 );
 
-            ArrayList<Point> intrectionx  = lineCircleIntersection(robotlocation , followRadius , startLine.toPoint(), endLine.toPoint());
+            ArrayList<Point> Intersection  = lineCircleIntersection(robotlocation , followRadius , startLine.toPoint(), endLine.toPoint());
             double closetAngle = 100000000;
-            for (Point thisintractiox : intrectionx){
+            for (Point thisintractiox : Intersection){
                 double angle = atan2(thisintractiox.y - worldYPosition , thisintractiox.x - worldXPosition );
                 double deltaAngle = abs(AngelWrap(angle - worldAngle_rad));
                 if ( deltaAngle < closetAngle){
@@ -54,8 +54,6 @@ public class RobotMovement {
 
         double relativeAngleToPoint = AngelWrap(absoluteAngleToTarget - (worldAngle_rad - Math.toRadians(90)));
 
-
-
         double relativeXToPoint = Math.cos(relativeAngleToPoint) * distanceToTarget;
         double relativeYToPoint = Math.sin(relativeAngleToPoint) * distanceToTarget;
 
@@ -72,5 +70,6 @@ public class RobotMovement {
         if(distanceToTarget < 10){
             movement_turn = 0;
         }
+
     }
 }
