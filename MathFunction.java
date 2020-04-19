@@ -4,25 +4,25 @@ import org.opencv.core.Point;
 
 import java.util.ArrayList;
 
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
+
+import static java.lang.Math.*;
 
 public class MathFunction {
-    public static double AngelWarp(double angle){
-        while (angle < -Math.PI){
-            angle += 2* Math.PI;
+    public static double AngelWrap(double angle){
+        while (angle < -PI){
+            angle += 2* PI;
         }
-        while (angle > Math.PI){
-            angle -= 2* Math.PI;
+        while (angle >  PI){
+            angle -= 2* PI;
         }
         return angle;
     }
-    public static ArrayList<Point> lineCircleintersaction(Point circleCenter , double redius, Point linePoint1, Point linePoint2){
-        if (Math.abs(linePoint1.y - linePoint2.y) < 0.003){
+    public static ArrayList<Point> lineCircleIntersection(Point circleCenter , double redius, Point linePoint1, Point linePoint2){
+        if (abs(linePoint1.y - linePoint2.y) < 0.003){
             linePoint1.y =  (linePoint2.y + 0.003);
 
         }
-        if (Math.abs(linePoint1.x - linePoint2.x) < 0.003){
+        if (abs(linePoint1.x - linePoint2.x) < 0.003){
             linePoint1.x =  (linePoint2.x + 0.003);
 
         }

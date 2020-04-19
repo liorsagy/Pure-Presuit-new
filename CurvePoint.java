@@ -9,9 +9,6 @@ public class CurvePoint {
     public double turnSpeed;
     public double followDistance;
     public double pointLenght;
-    public double slowDownTurnRdians;
-    public double slowedDownTurnAmount;
-
 
     public CurvePoint( double x, double  y, double moveSpeed, double turnSpeed,
                        double followDistance){
@@ -21,7 +18,6 @@ public class CurvePoint {
         this.moveSpeed = moveSpeed;
         this.turnSpeed = turnSpeed;
         this.followDistance = followDistance;
-
     }
 
     public CurvePoint( CurvePoint thispoint){
@@ -31,12 +27,13 @@ public class CurvePoint {
         turnSpeed = thispoint.turnSpeed;
         followDistance = thispoint.followDistance;
         pointLenght = thispoint.pointLenght;
-
     }
+
     public Point toPoint(){
         return new Point(x,y);
     }
-    public void  setPoint(Point point){
+
+    public void setPoint(Point point){
         x = point.x;
         y = point.y;
     }
