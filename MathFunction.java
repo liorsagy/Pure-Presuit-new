@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import static java.lang.Math.*;
 
 public class MathFunction {
-    public static double AngelWrap(double angle){
+    public static double AngleWrap(double angle){
         while (angle < -PI){
             angle += 2* PI;
         }
@@ -73,5 +73,9 @@ public class MathFunction {
 
         }
         return allPoints;
+    }
+
+    public static double getHeading(Point a, Point b){
+        return (b.y-a.y)/(b.x-a.x);
     }
 }

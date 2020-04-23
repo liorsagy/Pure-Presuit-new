@@ -20,7 +20,7 @@ public class RobotMovement {
 
         ComputerDebugging.sendKeyPoint(new FloatPoint(followMe.x, followMe.y));
 
-        goToPosition(followMe.x,followMe.y,followMe.moveSpeed, preferdAngel,followMe.turnSpeed);
+        goToPosition(followMe.x,followMe.y,followMe.moveSpeed, preferdAngel+followMe.heading,followMe.turnSpeed);
     }
 
     public static CurvePoint getFollowPointPath(ArrayList< CurvePoint> pathPoints, Point robotlocation){
@@ -36,13 +36,13 @@ public class RobotMovement {
             double closetAngle = 100000000;
             for (Point thisintractiox : Intersection){
                 double angle = atan2(thisintractiox.y - worldYPosition , thisintractiox.x - worldXPosition );
-                double deltaAngle = abs(AngelWrap(Range.clip(angle - worldAngle_rad, -180 , 180)));
+                double deltaAngle = abs(AngleWrap(Range.clip(angle - worldAngle_rad, -180 , 180)));
                 if ( deltaAngle < closetAngle){
                     closetAngle = deltaAngle;
                     followMe.setPoint(thisintractiox);
                 }
             }
-
+            followMe.heading = getHeading(startLine.toPoint(), endLine.toPoint());
         }
         return followMe;
     }
@@ -52,7 +52,7 @@ public class RobotMovement {
 
         double absoluteAngleToTarget = Math.atan2(y-worldYPosition,x-worldXPosition);
 
-        double relativeAngleToPoint = AngelWrap(Range.clip(absoluteAngleToTarget - (worldAngle_rad - Math.toRadians(90)), -180, 180));
+        double relativeAngleToPoint = AngleWrap(Range.clip(absoluteAngleToTarget - (worldAngle_rad - Math.toRadians(90)), -180, 180));
 
         double relativeXToPoint = Math.cos(relativeAngleToPoint) * distanceToTarget;
         double relativeYToPoint = Math.sin(relativeAngleToPoint) * distanceToTarget;
