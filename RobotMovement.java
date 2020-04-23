@@ -36,7 +36,7 @@ public class RobotMovement {
             double closetAngle = 100000000;
             for (Point thisintractiox : Intersection){
                 double angle = atan2(thisintractiox.y - worldYPosition , thisintractiox.x - worldXPosition );
-                double deltaAngle = abs(AngelWrap(angle - worldAngle_rad));
+                double deltaAngle = abs(AngelWrap(Range.clip(angle - worldAngle_rad, -180 , 180)));
                 if ( deltaAngle < closetAngle){
                     closetAngle = deltaAngle;
                     followMe.setPoint(thisintractiox);
@@ -52,7 +52,7 @@ public class RobotMovement {
 
         double absoluteAngleToTarget = Math.atan2(y-worldYPosition,x-worldXPosition);
 
-        double relativeAngleToPoint = AngelWrap(absoluteAngleToTarget - (worldAngle_rad - Math.toRadians(90)));
+        double relativeAngleToPoint = AngelWrap(Range.clip(absoluteAngleToTarget - (worldAngle_rad - Math.toRadians(90)), -180, 180));
 
         double relativeXToPoint = Math.cos(relativeAngleToPoint) * distanceToTarget;
         double relativeYToPoint = Math.sin(relativeAngleToPoint) * distanceToTarget;
@@ -68,7 +68,7 @@ public class RobotMovement {
         movement_turn = Range.clip(relativeTurnAngle/Math.toRadians(30),-1,1) * turnSpeed;
 
         if(distanceToTarget < 10){
-            movement_turn = 0;
+            //movement_turn = 0;
         }
 
     }

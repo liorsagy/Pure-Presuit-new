@@ -27,6 +27,7 @@ public class MathFunction {
         }
 
         double m1 = (linePoint2.y - linePoint1.y)/(linePoint2.x - linePoint1.x);
+        double c = Math.sin(m1);
 
         double quadraticA = 1.0 + pow(m1,2);
 
